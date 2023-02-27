@@ -1,6 +1,7 @@
 # 基于Scrapy的爬虫搭建
 
 ---
+项目地址: https://github.com/Kian716/my_scrapy
 >you can prepare the env by :    
 ``pip install -r requirements.txt``  
 > you can run the spider by :  
