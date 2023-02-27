@@ -17,7 +17,8 @@
 ```
 .
 ├── README.md
-├── item.csv
+├── results.xlsx
+├── img.png
 ├── my_scrapy
 │   ├── __init__.py
 │   ├── items.py
@@ -87,7 +88,8 @@ App的名称可以由App列表页直接获取，App的其余基本信息(如：�
 ### 关于parse函数的定义
 注意需要使用yield来返回Item
 
-## 爬取成果
+## 爬取结果
+爬取结果存储于`results.xlsx`文件
 1. 本次爬取一共花费时间：2小时(大约)，由于需要利用selenium打开每个App的详情页，爬取时长还和网速息息相关
 2. 共爬取App数量：539
 3. 在线评论数：3414
