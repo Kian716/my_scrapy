@@ -89,6 +89,10 @@ class MyScrapyDownloaderMiddleware:
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
 
+        # # 如果是App列表页，由于无动态加载，所以无须使用webdriver打开; 开启后效率并未提高
+        # if request.url in ['https://zhushou.360.cn/list/index/cid/102139/?page={}'.format(page) for page in range(1,12)]:
+        #     return None
+
         # 获取请求的url，并用browser打开
         self.browser.get(request.url)
         time.sleep(0.5)
