@@ -68,14 +68,13 @@ class MyScrapyDownloaderMiddleware:
     def __init__(self):
         self.browser = create_my_webdiver()
 
-    def __del__(self):
-        self.browser.quit()
-
     @classmethod
     def from_crawler(cls, crawler):
+        """官方推荐的webdriver关闭方法：使用信号"""
         # This method is used by Scrapy to create your spiders.
         s = cls()
         # crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
+        # 当接收到spider_closed的信号时，调用closeSpider方法
         crawler.signals.connect(s.closeSpider, signals.spider_closed)
         return s
 
@@ -90,10 +89,11 @@ class MyScrapyDownloaderMiddleware:
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
 
+        # 获取请求的url，并用browser打开
         self.browser.get(request.url)
-        time.sleep(1)
+        time.sleep(0.5)
+        # 获取网页的内容并包装成Response返回
         content = self.browser.page_source
-        # self.browser.quit()
         return HtmlResponse(url=request.url, body=content,
                             request=request, encoding='utf-8')
 
@@ -120,5 +120,6 @@ class MyScrapyDownloaderMiddleware:
         spider.logger.info('Spider opened: %s' % spider.name)
 
     def closeSpider(self):
+        """用于在爬虫关闭时关闭browser"""
         self.browser.close()
 

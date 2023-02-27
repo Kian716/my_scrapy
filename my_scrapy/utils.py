@@ -1,6 +1,7 @@
 from selenium import webdriver
 
 def create_my_webdiver(*, headless=False):
+    """"创建webdriver(标准模版可以重复使用)"""
     options = webdriver.ChromeOptions()
     if headless:
         options.add_argument('--headless')
